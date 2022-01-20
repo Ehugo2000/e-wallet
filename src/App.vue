@@ -1,21 +1,28 @@
 <template>
   <div id="app">
     <header>
-    <h1>E-WALLET</h1>
-    <h1>ADD A NEW BANK CARD</h1>
+      <nav>
+        <a @click="currentView = 'home'">HOME</a>
+        <a @click="currentView = 'addCards'">ADDCARDS</a>
+      </nav>
     </header>
-    
-    <AddCards />
+    <Home v-if="currentView == 'home'" />
+    <AddCards v-if="currentView == 'addCards'" />
   </div>
 </template>
 
 <script>
-// import Home from './views/Home.vue';
+import Home from './views/Home.vue';
 import AddCards from './views/AddCards.vue';
 
 export default {
   name: 'App',
-  components: { AddCards },
+  components: { Home, AddCards },
+  data() {
+    return {
+      currentView: 'home',
+    };
+  },
 };
 </script>
 
@@ -30,8 +37,22 @@ export default {
   background-color: peachpuff;
 }
 
+nav {
+  background-color: thistle;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;;
+}
+
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+h4 {
+  color:  #222222;
+  opacity: 60%;
+  
 }
 
 input {

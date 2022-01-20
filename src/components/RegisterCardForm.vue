@@ -1,21 +1,33 @@
 <template>
   <div id="register-card-form">
-    <form @submit.prevent>
+    <form @submit.prevent="submit">
       <input
         type="number"
         name="card-number"
         placeholder="XXXX XXXX XXXX XXXX"
         class="card-number"
+        v-model="user.cardnumber"
       />
       <input
         type="text"
         placeholder="FIRSTNAME LASTNAME"
         class="cardholder-name"
+        v-model="user.name"
       />
-      <input type="number" placeholder="XX/XX" class="valid" />
-      <input type="number" placeholder="XXX" class="ccv" />
-      <input type="text" placeholder="CHOOSE A VENDOR" class="vendor" />
-      <button class="add-card-btn">ADD CARD</button>
+      <input
+        type="number"
+        placeholder="XX/XX"
+        class="valid"
+        v-model="user.valid"
+      />
+      <input type="number" placeholder="XXX" class="ccv" v-model="user.ccv" />
+      <input
+        type="text"
+        placeholder="CHOOSE A VENDOR"
+        class="vendor"
+        v-model="user.vendor"
+      />
+      <button>ADD CARD</button>
     </form>
   </div>
 </template>
@@ -23,6 +35,23 @@
 <script>
 export default {
   name: 'RegisterCardForm',
+  props: [''],
+  data() {
+    return {
+      user: {
+        cardnumber: '',
+        name: '',
+        valid: '',
+        ccv: '',
+        vendor: '',
+      },
+    };
+  },
+  methods: {
+    submit() {
+      console.log(this.user);
+    },
+  },
 };
 </script>
 
