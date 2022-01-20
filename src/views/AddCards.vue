@@ -2,16 +2,18 @@
   <div id="add-cards">
     <h4>NEW CARD</h4>
     <Card />
-    <button>ADD CARD</button>
+    <RegisterCardForm/>
   </div>
 </template>
 
 <script>
 import Card from '../components/Card.vue';
+import RegisterCardForm from '../components/RegisterCardForm.vue';
+
 
 export default {
   name: 'AddCards',
-  components: { Card },
+  components: { Card, RegisterCardForm },
 };
 </script>
 

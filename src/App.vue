@@ -1,19 +1,21 @@
 <template>
   <div id="app">
+    <header>
     <h1>E-WALLET</h1>
     <h1>ADD A NEW BANK CARD</h1>
-    <Home />
+    </header>
+    
     <AddCards />
   </div>
 </template>
 
 <script>
-import Home from './views/Home.vue';
+// import Home from './views/Home.vue';
 import AddCards from './views/AddCards.vue';
 
 export default {
   name: 'App',
-  components: { Home, AddCards },
+  components: { AddCards },
 };
 </script>
 
@@ -32,7 +34,7 @@ h1 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-p {
+input {
   font-family: 'PT Mono', monospace;
 }
 
