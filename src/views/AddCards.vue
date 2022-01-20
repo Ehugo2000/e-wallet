@@ -1,16 +1,18 @@
 <template>
   <div id="add-cards">
-    <p>addcard view</p>
+    <h4>NEW CARD</h4>
+    <Card />
+    <button>ADD CARD</button>
   </div>
 </template>
 
 <script>
-export default {
-  name: "AddCards"
+import Card from '../components/Card.vue';
 
-}
+export default {
+  name: 'AddCards',
+  components: { Card },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

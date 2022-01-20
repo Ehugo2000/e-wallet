@@ -1,15 +1,17 @@
 <template>
   <div id="home">
-    <h2>home view</h2>
+    <h4>ACTIVE CARD</h4>
+    <Card />
+    <button>ADD A NEW CARD</button>
   </div>
 </template>
 
 <script>
+import Card from '../components/Card.vue';
 export default {
-  name: "Home"
-}
+  name: 'Home',
+  components: { Card },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
