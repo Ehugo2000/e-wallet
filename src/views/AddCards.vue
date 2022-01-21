@@ -2,8 +2,8 @@
   <div id="add-cards">
     <h1>ADD A NEW BANK CARD</h1>
     <h4>NEW CARD</h4>
-    <Card />
-    <RegisterCardForm />
+    <Card :sendFormDataToCard="sendFormDataToCard"/>
+    <RegisterCardForm @viewChange="$emit('viewChange')"/>
   </div>
 </template>
 
@@ -14,7 +14,20 @@ import RegisterCardForm from '../components/RegisterCardForm.vue';
 export default {
   name: 'AddCards',
   components: { Card, RegisterCardForm },
-  props: ['']
+  props: ['sendFormDataTo'],
+  data(){return {
+    sendFormDataToCard: {},
+
+  }},
+  methods: {
+    register(formData){
+      this.sendFormDataToCard = formData
+      console.log(this.sendFormDataToCard);
+    },
+     clickAdd() {
+      return this.$emit("viewChange");
+    },
+  }
 };
 </script>
 

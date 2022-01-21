@@ -1,13 +1,7 @@
 <template>
   <div id="app">
-    <header>
-      <nav>
-        <a @click="currentView = 'home'">HOME</a>
-        <a @click="currentView = 'addCards'">ADDCARDS</a>
-      </nav>
-    </header>
-    <Home v-if="currentView == 'home'" />
-    <AddCards v-if="currentView == 'addCards'" />
+    <Home v-if="currentView == 'home'" @viewChange="changeView" />
+    <AddCards v-else @viewChange="changeView" />
   </div>
 </template>
 
@@ -22,6 +16,15 @@ export default {
     return {
       currentView: 'home',
     };
+  },
+  methods: {
+    changeView() {
+      if (this.currentView == 'home') {
+        this.currentView = 'addCards';
+      } else {
+        this.currentView = 'home';
+      }
+    },
   },
 };
 </script>
@@ -42,17 +45,21 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  cursor: pointer;;
+  cursor: pointer;
 }
 
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+h2,
+h3 {
+  font-family: 'PT Mono', monospace;
+}
+
 h4 {
-  color:  #222222;
+  color: #222222;
   opacity: 60%;
-  
 }
 
 input {

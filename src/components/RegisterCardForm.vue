@@ -15,7 +15,7 @@
         v-model="user.name"
       />
       <input
-        type="number"
+        type="date"
         placeholder="XX/XX"
         class="valid"
         v-model="user.valid"
@@ -27,7 +27,7 @@
         class="vendor"
         v-model="user.vendor"
       />
-      <button>ADD CARD</button>
+      <button @click="$emit('viewChange')">ADD CARD</button>
     </form>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.user);
+      this.$emit('addInfoToCard', {...this.user})
     },
   },
 };
