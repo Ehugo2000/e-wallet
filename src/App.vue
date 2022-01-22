@@ -38,6 +38,8 @@ export default {
   height: 896px;
   width: 414px;
   background-color: peachpuff;
+  text-transform: uppercase;
+
 }
 
 nav {
@@ -50,11 +52,6 @@ nav {
 
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
-}
-
-h2,
-h3 {
-  font-family: 'PT Mono', monospace;
 }
 
 h4 {

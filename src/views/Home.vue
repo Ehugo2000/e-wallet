@@ -3,28 +3,11 @@
     <h1>E-WALLET</h1>
     <h4>ACTIVE CARD</h4>
     <div id="card">
-      <div class="card-logos">
-        <div class="card-logos-left">
-          <img src="../assets/wifi.svg" alt="wifi" />
-          <img src="../assets/chip.svg" alt="chip" />
-        </div>
-        <img src="../assets/bitcoin.svg" alt="bitcoin" />
-      </div>
-      <h2>XXXX XXXX XXXX XXXX</h2>
-      <div class="card-info">
-        <div>
-          <p>CARDHOLDER NAME</p>
-          <h3>CARDHOLODER NAME</h3>
-        </div>
-        <div>
-          <p>VALID THRU</p>
-          <h3>10/20</h3>
-        </div>
-      </div>
+          ACTIVE CARD HERE
     </div>
 
     <div class="card-list">future component</div>
-    <button @click="$emit('viewChange')">ADD A NEW CARD</button>
+    <button @click="$emit('viewChange')" class="add-card-btn">ADD A NEW CARD</button>
   </div>
 </template>
 
@@ -51,5 +34,11 @@ export default {
   height: 337px;
   width: 382px;
   background-color: tomato;
+}
+
+.add-card-btn{
+ border: none;
+  background-color: white;
+  color: black;
 }
 </style>
