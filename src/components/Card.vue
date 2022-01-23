@@ -3,10 +3,10 @@
     <div class="card" v-bind:style="cardStyle">
       <span class="upperpart">
         <div class="logos">
-          <img :src="wifi" alt="Wifi logo" id="wifiImg" />
-          <img :src="chipImg" alt="Chip logo" id="chipImg" />
+          <img :src="wifi" alt="Wifi-logo" id="wifiImg" />
+          <img :src="chipImg" alt="Chip-logo" id="chipImg" />
         </div>
-        <img :src="logo" alt="Vendor logo" />
+        <img :src="logo" alt="Vendor-logo" />
       </span>
       <span class="middlepart"
         ><p id="cardnum">{{ cardNum }}</p></span
@@ -16,7 +16,7 @@
           <p class="cardheader">CARDHOLDER NAME</p>
           <p class="cardinfo">{{ holderName }}</p>
         </div>
-        <div class="valid">
+        <div class="valid-thru">
           <p class="cardheader">VALID THRU</p>
           <p class="cardinfo">{{ `${validMonth}/${validYear}` }}</p>
         </div>
@@ -110,7 +110,7 @@ export default {
 .name {
   margin-left: 15px;
 }
-.valid {
+.valid-thru {
   margin-right: 15px;
 }
 .cardheader {
@@ -148,8 +148,8 @@ export default {
 }
 .bottompart {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+
 }
 .card {
   background-color: #d0d0d0;

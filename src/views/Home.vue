@@ -6,15 +6,18 @@
           ACTIVE CARD HERE
     </div>
 
-    <div class="card-list">future component</div>
+    <div class="card-list">
+      <!-- <CardList/> -->
+    </div>
     <button @click="$emit('viewChange')" class="add-card-btn">ADD A NEW CARD</button>
   </div>
 </template>
 
 <script>
+// import CardList from "../components/CardList.vue";
 export default {
   name: 'Home',
-  components: {},
+  // components: { CardList },
   data() {
     return {
       currentView: 'addCards',

@@ -25,6 +25,9 @@ export default {
         this.currentView = 'home';
       }
     },
+    saveCard(card) {
+      this.cardsArray.push(card);
+    },
   },
 };
 </script>
@@ -34,20 +37,14 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
 
 #app {
+  display: flex;
+  justify-content: center;
   margin: auto;
   height: 896px;
   width: 414px;
   background-color: peachpuff;
   text-transform: uppercase;
 
-}
-
-nav {
-  background-color: thistle;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
 }
 
 h1 {

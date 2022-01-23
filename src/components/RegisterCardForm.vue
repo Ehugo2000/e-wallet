@@ -1,7 +1,7 @@
 <template>
   <div id="register-card-form">
     <Card :user="user" :vendors="vendors" />
-    <form @submit.prevent="submit">
+    <form class="form" @submit.prevent="submit">
       <label for="card-number">CARD NUMBER</label>
       <input
         type="number"
@@ -39,15 +39,6 @@
         </div>
       </div>
 
-      <label for="ccv">CCV</label>
-      <input
-        type="number"
-        name="ccv"
-        placeholder="XXX"
-        class="ccv"
-        v-model="user.ccv"
-      />
-
       <label for="vendor">VENDOR</label>
       <select id="vendor" name="vendor" v-model="user.vendor">
         <option
@@ -79,7 +70,6 @@ export default {
         name: '',
         year: '',
         month: '',
-        cvv: '',
         vendor: {},
       },
       months: [
@@ -98,6 +88,8 @@ export default {
       ],
       years: ['2022', '2023', '2024', '2025', '2026'],
       vendors: [
+        {},
+
         {
           name: 'Bitcoin Inc',
           backgroundColor: '#FFAE34',
@@ -128,8 +120,8 @@ export default {
   methods: {
     submit() {
       this.savedCards.push({ ...this.user });
-      this.$emit("submit", this.savedCards);
-      this.$emit("viewChange");
+      this.$emit('submit', this.savedCards);
+      this.$emit('viewChange');
       console.log(this.savedCards);
     },
   },
@@ -137,15 +129,23 @@ export default {
 </script>
 
 <style>
-.date {
+.form {
   display: flex;
-  justify-content: space-around;
-  margin: 10px;
+  flex-direction: column;
 }
-input {
+
+input,
+select {
   font-size: 18px;
   border-radius: 8px;
+  min-height: 56px;
 }
+
+label {
+  margin: 5px;
+  margin-top: 10px;
+}
+
 .card-number {
   height: 56px;
   width: 382px;
@@ -156,15 +156,19 @@ input {
   width: 382px;
 }
 
+.date {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
 .valid {
   height: 56px;
   width: 175px;
+  display: flex;
+  flex-direction: column;
 }
 
-.ccv {
-  height: 56px;
-  width: 175px;
-}
 .vendor {
   height: 56px;
   width: 382px;
