@@ -2,7 +2,6 @@
   <div class="card-list">
     <Card v-if="!savedCardsArray" :card="card" class="single-card" />
     <Card
-      @wasClicked="changeActive(index)"
       :card="card"
       v-else
       v-for="(card, index) in savedCardsArray"
@@ -15,9 +14,8 @@
 <script>
 import Card from "./Card.vue";
 export default {
-  mounted() {
-    this.savedCardsArray = JSON.parse(localStorage.getItem("savedCards"));
-  },
+  name: "CardList",
+  components: { Card },
   data() {
     return {
       savedCardsArray: [],
@@ -27,18 +25,15 @@ export default {
         month: "",
         year: "",
         vendor: {},
+        carId:'',
       },
     };
   },
-  components: { Card },
+  mounted() {
+    console.log('mounteInCardList');
+    this.savedCardsArray = JSON.parse(localStorage.getItem("savedCards"));
+  },
   methods: {
-    changeActive(index) {
-      if (index > 0) {
-        let newActive = this.savedCardsArray[index];
-        this.savedCardsArray.splice(index, 1);
-        this.savedCardsArray.unshift(newActive);
-      }
-    },
   },
 };
 </script>
@@ -47,14 +42,6 @@ export default {
 .card-list {
   display: flex;
   flex-direction: column;
-}
-
-.single-card:not(:first-of-type):hover {
-  transform: translateY(-20%);
-}
-.single-card:not(:first-of-type) {
-  position: relative;
-  margin-bottom: -180px;
 }
 
 

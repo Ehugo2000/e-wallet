@@ -1,5 +1,5 @@
 <template>
-  <div class="single-card">
+  <div class="single-card" @click="$emit('activateCard')">
     <div class="card" v-bind:style="cardTemplate">
       <span class="upperpart">
         <div class="logos">
@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name: "Card",
   props: ['card', 'vendors'],
   data() {
     return {
@@ -47,6 +48,7 @@ export default {
       return inputData;
     },
     cardTemplate() {
+      console.log('cardTemplate');
       return {
         backgroundColor: this.card.vendor.backgroundColor,
         color: this.card.vendor.fontColor,
@@ -69,8 +71,11 @@ export default {
         let sub3 = this.card.cardNumber.substring(8, 12);
         let sub4 = this.card.cardNumber.substring(12, 16);
         inputData = `${sub1} ${sub2} ${sub3} ${sub4}`;
+        console.log('cardnumber1')
+        
       } else {
         inputData = `XXXX XXXX XXXX XXXX`;
+        console.log('cardnumber2')
       }
       return inputData;
     },

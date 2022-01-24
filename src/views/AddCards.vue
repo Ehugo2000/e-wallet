@@ -13,13 +13,12 @@ export default {
   name: 'AddCards',
   components: { RegisterCardForm },
   props: ['sendFormDataTo'],
-  data(){return {
-    sendFormDataToCard: {},
-
-  }},
-  methods: {
-    
-  }
+  data() {
+    return {
+      sendFormDataToCard: {},
+    };
+  },
+  methods: {},
 };
 </script>
 

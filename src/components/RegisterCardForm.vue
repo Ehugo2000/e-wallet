@@ -117,18 +117,20 @@ export default {
   },
   methods: {
     submit() {
-      this.savedCardsArray.push({ ...this.card });
-      this.$emit('submit', this.savedCardsArray);
+
       this.$emit('clickToChangeView');
-      console.log(this.savedCardsArray);
+      console.log(localStorage);
     },
   },
    beforeDestroy() {
     if (localStorage.getItem("savedCards") != undefined) {
       this.savedCardsArray = JSON.parse(localStorage.getItem("savedCards"));
+      console.log('beforeDestroyIF');
     }
-    this.savedCardsArray.push(this.card);
-    localStorage.setItem("savedCards", JSON.stringify(this.savedCardsArray));
+      this.savedCardsArray.push(this.card);
+      localStorage.setItem("savedCards", JSON.stringify(this.savedCardsArray));
+      console.log('beforeDestroysetItem');
+    
   },
 };
 </script>
