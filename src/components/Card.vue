@@ -1,12 +1,12 @@
 <template>
-  <div class="card" @submit="$emit('submit', savedCards)">
-    <div class="card" v-bind:style="cardStyle">
+  <div class="single-card">
+    <div class="card" v-bind:style="cardTemplate">
       <span class="upperpart">
         <div class="logos">
-          <img :src="wifi" alt="Wifi-logo" id="wifiImg" />
-          <img :src="chipImg" alt="Chip-logo" id="chipImg" />
+          <img :src="wifi" alt="wifi" id="wifiImg" />
+          <img :src="chipImg" alt="chip" id="chipImg" />
         </div>
-        <img :src="logo" alt="Vendor-logo" />
+        <img :src="logo" alt="vendor-logo" />
       </span>
       <span class="middlepart"
         ><p id="cardnum">{{ cardNum }}</p></span
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props: ['user', 'vendors'],
+  props: ['card', 'vendors'],
   data() {
     return {
       wifiImg: require('../assets/wifi.svg'),
@@ -36,71 +36,70 @@ export default {
       vendorLogo: require('../assets/bitcoin.svg'),
     };
   },
-
   computed: {
     wifi() {
-      let span = '';
-      if (this.user.vendor.name == 'Ninja Bank') {
-        span = this.whiteWifiImg;
+      let inputData = '';
+      if (this.card.vendor.name == 'Ninja Bank') {
+        inputData = this.whiteWifiImg;
       } else {
-        span = this.wifiImg;
+        inputData = this.wifiImg;
       }
-      return span;
+      return inputData;
     },
-    cardStyle() {
+    cardTemplate() {
       return {
-        backgroundColor: this.user.vendor.backgroundColor,
-        color: this.user.vendor.fontColor,
+        backgroundColor: this.card.vendor.backgroundColor,
+        color: this.card.vendor.fontColor,
       };
     },
     logo() {
-      let span = '';
-      if (this.user.vendor.logo) {
-        span = this.user.vendor.logo;
+      let inputData = '';
+      if (this.card.vendor.logo) {
+        inputData = this.card.vendor.logo;
       } else {
-        span = this.vendorLogo;
+        inputData = this.vendorLogo;
       }
-      return span;
+      return inputData;
     },
     cardNum() {
-      let span = '';
-      if (this.user.cardNumber) {
-        let sub1 = this.user.cardNumber.substring(0, 4);
-        let sub2 = this.user.cardNumber.substring(4, 8);
-        let sub3 = this.user.cardNumber.substring(8, 12);
-        let sub4 = this.user.cardNumber.substring(12, 16);
-        span = `${sub1} ${sub2} ${sub3} ${sub4}`;
+      let inputData = '';
+      if (this.card.cardNumber) {
+        let sub1 = this.card.cardNumber.substring(0, 4);
+        let sub2 = this.card.cardNumber.substring(4, 8);
+        let sub3 = this.card.cardNumber.substring(8, 12);
+        let sub4 = this.card.cardNumber.substring(12, 16);
+        inputData = `${sub1} ${sub2} ${sub3} ${sub4}`;
       } else {
-        span = `XXXX XXXX XXXX XXXX`;
+        inputData = `XXXX XXXX XXXX XXXX`;
       }
-      return span;
+      return inputData;
     },
     holderName() {
-      let span = '';
-      if (this.user.name) {
-        span = this.user.name;
+      let inputData = '';
+      if (this.card.name) {
+        inputData = this.card.name;
       } else {
-        span = `Firstname Lastname`;
+        inputData = `Firstname Lastname`;
       }
-      return span;
+      return inputData;
     },
     validMonth() {
-      let span = '';
-      if (this.user.month) {
-        span = this.user.month;
+      let inputData = '';
+      if (this.card.month) {
+        inputData = this.card.month;
       } else {
-        span = `XX`;
+        inputData = `XX`;
       }
-      return span;
+      return inputData;
     },
     validYear() {
-      let span = '';
-      if (this.user.year) {
-        span = this.user.year.substring(2, 4);
+      let inputData = '';
+      if (this.card.year) {
+        inputData = this.card.year.substring(2, 4);
       } else {
-        span = `XX`;
+        inputData = `XX`;
       }
-      return span;
+      return inputData;
     },
   },
 };
@@ -122,8 +121,11 @@ export default {
   font-size: 15px;
   font-family: 'PT Mono', monospace;
   margin-top: 5px;
+  letter-spacing: 0.1rem;
+
 }
 #cardnum {
+  text-align: center;
   font-size: 23px;
   letter-spacing: 0.3rem;
   margin-top: 10px;
@@ -149,14 +151,13 @@ export default {
 .bottompart {
   display: flex;
   justify-content: space-between;
-
 }
 .card {
   background-color: #d0d0d0;
   border-radius: 5px;
   min-width: 350px;
   min-height: 200px;
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.81);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.32);
   margin-bottom: 40px;
 }
 </style>

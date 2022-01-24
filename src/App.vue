@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Home v-if="currentView == 'home'" @viewChange="changeView" />
-    <AddCards v-else @viewChange="changeView" />
+    <Home v-if="currentView == 'home'" @clickToChangeView="changeView" />
+    <AddCards v-else @clickToChangeView="changeView" />
   </div>
 </template>
 
@@ -19,14 +19,7 @@ export default {
   },
   methods: {
     changeView() {
-      if (this.currentView == 'home') {
-        this.currentView = 'addCards';
-      } else {
-        this.currentView = 'home';
-      }
-    },
-    saveCard(card) {
-      this.cardsArray.push(card);
+        this.currentView == 'home' ? this.currentView = 'addCards' : this.currentView = 'home'
     },
   },
 };
@@ -42,9 +35,9 @@ export default {
   margin: auto;
   height: 896px;
   width: 414px;
-  background-color: peachpuff;
+  background-color: rgb(226, 226, 226);
   text-transform: uppercase;
-
+  border-radius: 6px;
 }
 
 h1 {

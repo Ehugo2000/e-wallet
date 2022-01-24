@@ -2,25 +2,20 @@
   <div id="home">
     <h1>E-WALLET</h1>
     <h4>ACTIVE CARD</h4>
-    <div id="card">
-          ACTIVE CARD HERE
-    </div>
-
     <div class="card-list">
-      <!-- <CardList/> -->
+      <CardList/>
     </div>
-    <button @click="$emit('viewChange')" class="add-card-btn">ADD A NEW CARD</button>
+    <button @click="$emit('clickToChangeView')" class="add-card-btn">ADD A NEW CARD</button>
   </div>
 </template>
 
 <script>
-// import CardList from "../components/CardList.vue";
+import CardList from "../components/CardList.vue";
 export default {
   name: 'Home',
-  // components: { CardList },
+  components: { CardList },
   data() {
     return {
-      currentView: 'addCards',
     };
   },
 };
@@ -34,9 +29,8 @@ export default {
 }
 
 .card-list {
-  height: 337px;
-  width: 382px;
-  background-color: tomato;
+  height: 660px;
+  width: 386px;
 }
 
 .add-card-btn{

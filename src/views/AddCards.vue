@@ -2,13 +2,11 @@
   <div id="add-cards">
     <h1>ADD A NEW BANK CARD</h1>
     <h4>NEW CARD</h4>
-    <!-- <Card :sendFormDataToCard="sendFormDataToCard"/> -->
-    <RegisterCardForm @viewChange="$emit('viewChange')"/>
+    <RegisterCardForm @clickToChangeView="$emit('clickToChangeView')" />
   </div>
 </template>
 
 <script>
-// import Card from '../components/Card.vue';
 import RegisterCardForm from '../components/RegisterCardForm.vue';
 
 export default {
@@ -20,17 +18,13 @@ export default {
 
   }},
   methods: {
-    register(formData){
-      this.sendFormDataToCard = formData
-      console.log(this.sendFormDataToCard);
-    },
+    
   }
 };
 </script>
 
 <style>
 #add-cards {
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

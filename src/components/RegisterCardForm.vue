@@ -1,6 +1,6 @@
 <template>
   <div id="register-card-form">
-    <Card :user="user" :vendors="vendors" />
+    <Card :card="card" :vendors="vendors"/>
     <form class="form" @submit.prevent="submit">
       <label for="card-number">CARD NUMBER</label>
       <input
@@ -8,8 +8,7 @@
         name="card-number"
         placeholder="XXXX XXXX XXXX XXXX"
         class="card-number"
-        v-model="user.cardNumber"
-        maxlength="16"
+        v-model="card.cardNumber"
       />
       <label for="cardholder-name">CARDHOLDER NAME</label>
       <input
@@ -17,13 +16,13 @@
         name="cardholder-name"
         placeholder="FIRSTNAME LASTNAME"
         class="cardholder-name"
-        v-model="user.name"
+        v-model="card.name"
       />
       <div class="date">
         <div class="valid">
           <label for="month">MONTH</label>
-          <select name="month" v-model="user.month">
-            <option v-for="month in months" :key="month" value:value="month">
+          <select name="month" v-model="card.month">
+            <option v-for="month in months" :key="month" value:value="month" name="month">
               {{ month }}
             </option>
           </select>
@@ -31,8 +30,8 @@
 
         <div class="valid">
           <label for="year">YEAR</label>
-          <select name="year" v-model="user.year">
-            <option v-for="year in years" :key="year" name="year">
+          <select name="year" v-model="card.year">
+            <option v-for="year in years" :key="year" value:value="year" name="year">
               {{ year }}
             </option>
           </select>
@@ -40,12 +39,12 @@
       </div>
 
       <label for="vendor">VENDOR</label>
-      <select id="vendor" name="vendor" v-model="user.vendor">
+      <select class="vendor" name="vendor" v-model="card.vendor">
         <option
           v-for="vendor in vendors"
           :key="vendor.name"
-          name="vendor"
           :value="vendor"
+          name="vendor"
         >
           {{ vendor.name }}
         </option>
@@ -64,13 +63,14 @@ export default {
   props: [''],
   data() {
     return {
-      savedCards: [],
-      user: {
+      savedCardsArray: [],
+      card: {
         cardNumber: '',
         name: '',
         year: '',
         month: '',
         vendor: {},
+        cardId:'',
       },
       months: [
         '01',
@@ -88,8 +88,6 @@ export default {
       ],
       years: ['2022', '2023', '2024', '2025', '2026'],
       vendors: [
-        {},
-
         {
           name: 'Bitcoin Inc',
           backgroundColor: '#FFAE34',
@@ -119,11 +117,18 @@ export default {
   },
   methods: {
     submit() {
-      this.savedCards.push({ ...this.user });
-      this.$emit('submit', this.savedCards);
-      this.$emit('viewChange');
-      console.log(this.savedCards);
+      this.savedCardsArray.push({ ...this.card });
+      this.$emit('submit', this.savedCardsArray);
+      this.$emit('clickToChangeView');
+      console.log(this.savedCardsArray);
     },
+  },
+   beforeDestroy() {
+    if (localStorage.getItem("savedCards") != undefined) {
+      this.savedCardsArray = JSON.parse(localStorage.getItem("savedCards"));
+    }
+    this.savedCardsArray.push(this.card);
+    localStorage.setItem("savedCards", JSON.stringify(this.savedCardsArray));
   },
 };
 </script>
