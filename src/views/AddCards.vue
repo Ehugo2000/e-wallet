@@ -12,10 +12,9 @@ import RegisterCardForm from '../components/RegisterCardForm.vue';
 export default {
   name: 'AddCards',
   components: { RegisterCardForm },
-  props: ['sendFormDataTo'],
+  props: [''],
   data() {
     return {
-      sendFormDataToCard: {},
     };
   },
   methods: {},

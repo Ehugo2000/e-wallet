@@ -1,5 +1,5 @@
 <template>
-  <div class="single-card" @click="$emit('activateCard')">
+  <div>
     <div class="card" v-bind:style="cardTemplate">
       <span class="upperpart">
         <div class="logos">
@@ -13,11 +13,11 @@
       >
       <span class="bottompart">
         <div class="name">
-          <p class="cardheader">CARDHOLDER NAME</p>
+          <p class="cardText">CARDHOLDER NAME</p>
           <p class="cardinfo">{{ holderName }}</p>
         </div>
         <div class="valid-thru">
-          <p class="cardheader">VALID THRU</p>
+          <p class="cardText">VALID THRU</p>
           <p class="cardinfo">{{ `${validMonth}/${validYear}` }}</p>
         </div>
       </span>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "Card",
+  name: 'Card',
   props: ['card', 'vendors'],
   data() {
     return {
@@ -38,6 +38,13 @@ export default {
     };
   },
   computed: {
+    cardTemplate() {
+      console.log('cardTemplate');
+      return {
+        backgroundColor: this.card.vendor.backgroundColor,
+        color: this.card.vendor.fontColor,
+      };
+    },
     wifi() {
       let inputData = '';
       if (this.card.vendor.name == 'Ninja Bank') {
@@ -46,13 +53,6 @@ export default {
         inputData = this.wifiImg;
       }
       return inputData;
-    },
-    cardTemplate() {
-      console.log('cardTemplate');
-      return {
-        backgroundColor: this.card.vendor.backgroundColor,
-        color: this.card.vendor.fontColor,
-      };
     },
     logo() {
       let inputData = '';
@@ -71,11 +71,10 @@ export default {
         let sub3 = this.card.cardNumber.substring(8, 12);
         let sub4 = this.card.cardNumber.substring(12, 16);
         inputData = `${sub1} ${sub2} ${sub3} ${sub4}`;
-        console.log('cardnumber1')
-        
+        console.log('cardnumber1');
       } else {
         inputData = `XXXX XXXX XXXX XXXX`;
-        console.log('cardnumber2')
+        console.log('cardnumber2');
       }
       return inputData;
     },
@@ -117,7 +116,7 @@ export default {
 .valid-thru {
   margin-right: 15px;
 }
-.cardheader {
+.cardText {
   font-size: 10px;
   font-family: 'PT Mono', monospace;
   text-align: left;
@@ -127,7 +126,6 @@ export default {
   font-family: 'PT Mono', monospace;
   margin-top: 5px;
   letter-spacing: 0.1rem;
-
 }
 #cardnum {
   text-align: center;

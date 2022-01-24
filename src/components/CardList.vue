@@ -1,40 +1,33 @@
 <template>
   <div class="card-list">
-    <Card v-if="!savedCardsArray" :card="card" class="single-card" />
-    <Card
-      :card="card"
-      v-else
-      v-for="(card, index) in savedCardsArray"
-      :key="card.index"
-      :class="{ active: index === 0 }"
-    />
+    <Card v-if="!savedCardsArray" :card="card" />
+    <Card :card="card" v-for="card in savedCardsArray" :key="card" />
   </div>
 </template>
 
 <script>
-import Card from "./Card.vue";
+import Card from './Card.vue';
 export default {
-  name: "CardList",
+  name: 'CardList',
   components: { Card },
   data() {
     return {
       savedCardsArray: [],
       card: {
-        cardNumber: "",
-        cardholderName: "",
-        month: "",
-        year: "",
+        cardNumber: '',
+        cardholderName: '',
+        month: '',
+        year: '',
         vendor: {},
-        carId:'',
+        carId: '',
       },
     };
   },
   mounted() {
     console.log('mounteInCardList');
-    this.savedCardsArray = JSON.parse(localStorage.getItem("savedCards"));
+    this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
@@ -43,6 +36,4 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
-
 </style>
