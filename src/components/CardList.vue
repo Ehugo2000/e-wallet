@@ -1,7 +1,7 @@
 <template>
   <div class="card-list">
     <Card v-if="!savedCardsArray" :card="card" />
-    <Card :card="card" v-for="card in savedCardsArray" :key="card" />
+    <Card :card="card" v-for="card in savedCardsArray" :key="card.cardNumber" />
   </div>
 </template>
 

@@ -55,6 +55,9 @@
 </template>
 
 <script>
+function generateId() {
+  return Math.floor(Math.random() * 10000);
+}
 import Card from '../components/Card.vue';
 
 export default {
@@ -70,7 +73,7 @@ export default {
         year: '',
         month: '',
         vendor: {},
-        cardId:'',
+        cardId: generateId(),
       },
       months: [
         '01',
