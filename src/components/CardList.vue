@@ -1,7 +1,9 @@
 <template>
   <div class="card-list">
-    <Card v-if="!savedCardsArray" :card="card" :class="{active: isActive}" @click="isActive = !isActive"/>
-    <Card :card="card" v-for="card in savedCardsArray" :key="card.cardNumber" />
+    <Card v-if="!savedCardsArray" :card="card"/>
+    <Card :card="card" v-for="(card, index) in savedCardsArray" :key="card.index"
+    @activeCard="log(index)"
+    />
   </div>
 </template>
 
@@ -12,7 +14,8 @@ export default {
   components: { Card },
   data() {
     return {
-      isActive: "false",
+
+      // isActive: "false", :class="{active: isActive}" @click="isActive = !isActive"
       savedCardsArray: [],
       card: {
         cardNumber: '',
@@ -28,7 +31,12 @@ export default {
     console.log('mounteInCardList');
     this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
   },
-  methods: {},
+  methods: {
+    
+    log(index){
+    console.log(JSON.stringify(this.card) + " " + JSON.parse(index));
+    }
+  },
 };
 </script>
 

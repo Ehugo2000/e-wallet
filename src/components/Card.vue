@@ -1,6 +1,6 @@
 <template>
-  <div :class="{active: isActive}" @click="isActive = !isActive">
-    <div class="card" v-bind:style="cardTemplate">
+  <div>
+    <div class="card" v-bind:style="cardTemplate" @click="$emit('activeCard')">
       <span class="upperpart">
         <div class="logos">
           <img :src="wifi" alt="wifi" id="wifiImg" />
