@@ -3,6 +3,7 @@
     <Card v-if="!savedCardsArray" :card="card"/>
     <Card :card="card" v-for="(card, index) in savedCardsArray" :key="card.index"
     @activeCard="log(index)"
+   
     />
   </div>
 </template>
@@ -14,7 +15,6 @@ export default {
   components: { Card },
   data() {
     return {
-
       // isActive: "false", :class="{active: isActive}" @click="isActive = !isActive"
       savedCardsArray: [],
       card: {
@@ -32,9 +32,8 @@ export default {
     this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
   },
   methods: {
-    
     log(index){
-    console.log(JSON.stringify(this.card) + " " + JSON.parse(index));
+    console.log(JSON.stringify(this.savedCardsArray[index]) + " " + JSON.parse(index));
     }
   },
 };

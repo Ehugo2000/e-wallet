@@ -1,6 +1,6 @@
 <template>
   <div id="register-card-form">
-    <Card :card="card" :vendors="vendors"/>
+    <Card :card="card"/>
     <form class="form" @submit.prevent="submit">
       <label for="card-number">CARD NUMBER</label>
       <input
@@ -55,10 +55,7 @@
 </template>
 
 <script>
-function generateId() {
-  console.log('generatID');
-  return Math.floor(Math.random() * 10000);
-}
+
 import Card from '../components/Card.vue';
 
 export default {
@@ -74,7 +71,7 @@ export default {
         year: '',
         month: '',
         vendor: {},
-        cardId: generateId(),
+        cardId: Math.floor(Math.random() * 10000),
       },
       months: [
         '01',

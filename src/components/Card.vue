@@ -28,7 +28,7 @@
 <script>
 export default {
   name: 'Card',
-  props: ['card', 'vendors'],
+  props: ['card'],
   data() {
     return {
       wifiImg: require('../assets/wifi.svg'),
