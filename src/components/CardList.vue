@@ -3,7 +3,6 @@
     <Card v-if="!savedCardsArray" :card="card"/>
     <Card :card="card" v-for="(card, index) in savedCardsArray" :key="card.index"
     @activeCard="log(index)"
-   
     />
   </div>
 </template>

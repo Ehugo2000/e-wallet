@@ -1,6 +1,6 @@
 <template>
   <div id="register-card-form">
-    <Card :card="card"/>
+    <Card :card="card" />
     <form class="form" @submit.prevent="submit">
       <label for="card-number">CARD NUMBER</label>
       <input
@@ -22,7 +22,12 @@
         <div class="valid">
           <label for="month">MONTH</label>
           <select name="month" v-model="card.month">
-            <option v-for="month in months" :key="month" value:value="month" name="month">
+            <option
+              v-for="month in months"
+              :key="month"
+              value:value="month"
+              name="month"
+            >
               {{ month }}
             </option>
           </select>
@@ -31,7 +36,12 @@
         <div class="valid">
           <label for="year">YEAR</label>
           <select name="year" v-model="card.year">
-            <option v-for="year in years" :key="year" value:value="year" name="year">
+            <option
+              v-for="year in years"
+              :key="year"
+              value:value="year"
+              name="year"
+            >
               {{ year }}
             </option>
           </select>
@@ -55,7 +65,6 @@
 </template>
 
 <script>
-
 import Card from '../components/Card.vue';
 
 export default {
@@ -118,20 +127,17 @@ export default {
   },
   methods: {
     submit() {
+      if (localStorage.getItem('savedCards') != undefined) {
+        this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
+        console.log('beforeDestroyIF');
+      }
+      this.savedCardsArray.push(this.card);
+      localStorage.setItem('savedCards', JSON.stringify(this.savedCardsArray));
+      console.log('beforeDestroysetItem');
 
       this.$emit('clickToChangeView');
       console.log(localStorage);
     },
-  },
-   beforeDestroy() {
-    if (localStorage.getItem("savedCards") != undefined) {
-      this.savedCardsArray = JSON.parse(localStorage.getItem("savedCards"));
-      console.log('beforeDestroyIF');
-    }
-      this.savedCardsArray.push(this.card);
-      localStorage.setItem("savedCards", JSON.stringify(this.savedCardsArray));
-      console.log('beforeDestroysetItem');
-    
   },
 };
 </script>
