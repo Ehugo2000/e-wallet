@@ -56,6 +56,7 @@
 
 <script>
 function generateId() {
+  console.log('generatID');
   return Math.floor(Math.random() * 10000);
 }
 import Card from '../components/Card.vue';

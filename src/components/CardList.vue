@@ -1,6 +1,6 @@
 <template>
   <div class="card-list">
-    <Card v-if="!savedCardsArray" :card="card" />
+    <Card v-if="!savedCardsArray" :card="card" :class="{active: isActive}" @click="isActive = !isActive"/>
     <Card :card="card" v-for="card in savedCardsArray" :key="card.cardNumber" />
   </div>
 </template>
@@ -12,6 +12,7 @@ export default {
   components: { Card },
   data() {
     return {
+      isActive: "false",
       savedCardsArray: [],
       card: {
         cardNumber: '',
@@ -19,7 +20,7 @@ export default {
         month: '',
         year: '',
         vendor: {},
-        carId: '',
+        cardId: '',
       },
     };
   },
@@ -35,5 +36,9 @@ export default {
 .card-list {
   display: flex;
   flex-direction: column;
+}
+
+.active {
+  background-color: green;
 }
 </style>

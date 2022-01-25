@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{active: isActive}" @click="isActive = !isActive">
     <div class="card" v-bind:style="cardTemplate">
       <span class="upperpart">
         <div class="logos">
