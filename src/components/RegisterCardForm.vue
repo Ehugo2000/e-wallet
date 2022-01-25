@@ -127,16 +127,26 @@ export default {
   },
   methods: {
     submit() {
-      if (localStorage.getItem('savedCards') != undefined) {
-        this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
-        console.log('beforeDestroyIF');
-      }
-      this.savedCardsArray.push(this.card);
-      localStorage.setItem('savedCards', JSON.stringify(this.savedCardsArray));
-      console.log('beforeDestroysetItem');
 
-      this.$emit('clickToChangeView');
-      console.log(localStorage);
+      if(this.card.cardNumber.length !== 16) {
+
+        console.log('error');
+        
+      }else{
+        if (localStorage.getItem('savedCards') != undefined) {
+          this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
+          console.log('getItem');
+        }
+        this.savedCardsArray.push(this.card);
+        localStorage.setItem('savedCards', JSON.stringify(this.savedCardsArray));
+        console.log('setItem');
+  
+        this.$emit('clickToChangeView');
+        console.log(localStorage);
+
+
+      }
+
     },
   },
 };
