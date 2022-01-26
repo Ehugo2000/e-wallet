@@ -26,7 +26,7 @@ export default {
       },
     };
   },
-  mounted() {
+  created() {
     console.log('mounteInCardList');
     this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
   },

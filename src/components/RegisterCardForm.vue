@@ -4,11 +4,12 @@
     <form class="form" @submit.prevent="submit">
       <label for="card-number">CARD NUMBER</label>
       <input
-        type="number"
+        type="text"
         name="card-number"
         placeholder="XXXX XXXX XXXX XXXX"
         class="card-number"
         v-model="card.cardNumber"
+        maxlength="16"
       />
       <label for="cardholder-name">CARDHOLDER NAME</label>
       <input
@@ -128,10 +129,12 @@ export default {
   methods: {
     submit() {
 
-      if(this.card.cardNumber.length !== 16) {
-
-        console.log('error');
-        
+      if(this.card.cardNumber.length !== 16){
+      alert('Please fill a valid card number')
+      }else if(this.card.name.length == 0 || this.card.name.length > 25){
+      alert('Please fill a valid name')
+      }else if(this.card.year.length == 0 || this.card.year.length == 0){
+      alert('Please fill a valid expiring date')
       }else{
         if (localStorage.getItem('savedCards') != undefined) {
           this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
@@ -140,11 +143,8 @@ export default {
         this.savedCardsArray.push(this.card);
         localStorage.setItem('savedCards', JSON.stringify(this.savedCardsArray));
         console.log('setItem');
-  
         this.$emit('clickToChangeView');
         console.log(localStorage);
-
-
       }
 
     },
