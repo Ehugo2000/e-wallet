@@ -1,9 +1,16 @@
 <template>
-  <div class="card-list">
-    <Card v-if="!savedCardsArray" :card="card"/>
-    <Card :card="card" v-for="(card, index) in savedCardsArray" :key="card.index"
-    @activeCard="log(index)"
+  <div>
+    <Card v-if="savedCardsArray.length <= 0" :card="card" :savedCardsArray='savedCardsArray'/>
+    <div class="card-list">
+    <Card
+      :card="card"
+      :savedCardsArray='savedCardsArray'
+      v-for="(card, ArrayIndex) in savedCardsArray"
+      :key="card.index"
+      @activeCard="activeCard(ArrayIndex)"
     />
+
+    </div>
   </div>
 </template>
 
@@ -12,10 +19,9 @@ import Card from './Card.vue';
 export default {
   name: 'CardList',
   components: { Card },
+  props: ['savedCardsArray'],
   data() {
     return {
-      // isActive: "false", :class="{active: isActive}" @click="isActive = !isActive"
-      savedCardsArray: [],
       card: {
         cardNumber: '',
         cardholderName: '',
@@ -26,25 +32,25 @@ export default {
       },
     };
   },
-  created() {
-    console.log('mounteInCardList');
-    this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
-  },
   methods: {
-    log(index){
-    console.log(JSON.stringify(this.savedCardsArray[index]) + " " + JSON.parse(index));
-    }
+    activeCard(ArrayIndex) {
+ if (ArrayIndex != 0) {
+        let setActiveCard = this.savedCardsArray[ArrayIndex];
+        this.savedCardsArray.splice(ArrayIndex, 1);
+        this.savedCardsArray.unshift(setActiveCard);
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
 .card-list {
-  display: flex;
-  flex-direction: column;
+  height: 600px;
+  display: grid;
+  grid-auto-rows: 240px 80px 80px 80px;
 }
 
-.active {
-  background-color: green;
-}
+
+
 </style>

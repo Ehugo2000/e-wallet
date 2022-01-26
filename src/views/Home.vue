@@ -3,7 +3,7 @@
     <h1>E-WALLET</h1>
     <h4>ACTIVE CARD</h4>
     <div class="card-list">
-      <CardList/>
+      <CardList :savedCardsArray="savedCardsArray"/>
     </div>
     <button @click="$emit('clickToChangeView')" class="add-card-btn">ADD A NEW CARD</button>
   </div>
@@ -14,6 +14,7 @@ import CardList from "../components/CardList.vue";
 export default {
   name: 'Home',
   components: { CardList },
+  props: ['savedCardsArray'],
   data() {
     return {
     };

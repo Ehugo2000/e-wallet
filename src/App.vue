@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <Home v-if="currentView == 'home'" @clickToChangeView="changeView" />
-    <AddCards v-else @clickToChangeView="changeView" />
+    <Home
+      v-if="currentView == 'home'"
+      @clickToChangeView="changeView"
+      :savedCardsArray="savedCardsArray"
+    />
+    <AddCards v-else @clickToChangeView="changeView" @saveCard="saveCard" />
   </div>
 </template>
 
@@ -14,12 +18,24 @@ export default {
   components: { Home, AddCards },
   data() {
     return {
+      savedCardsArray: [],
       currentView: 'home',
     };
   },
+  mounted() {
+    if (localStorage.getItem('savedCards') != undefined) {
+      this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
+    }
+  },
   methods: {
+    saveCard(card) {
+      this.savedCardsArray.push(card);
+      localStorage.setItem('savedCards', JSON.stringify(this.savedCardsArray));
+    },
     changeView() {
-        this.currentView == 'home' ? this.currentView = 'addCards' : this.currentView = 'home'
+      this.currentView == 'home'
+        ? (this.currentView = 'addCards')
+        : (this.currentView = 'home');
     },
   },
 };

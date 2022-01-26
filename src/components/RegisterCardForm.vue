@@ -128,25 +128,16 @@ export default {
   },
   methods: {
     submit() {
-
-      if(this.card.cardNumber.length !== 16){
-      alert('Please fill a valid card number')
-      }else if(this.card.name.length == 0 || this.card.name.length > 25){
-      alert('Please fill a valid name')
-      }else if(this.card.year.length == 0 || this.card.year.length == 0){
-      alert('Please fill a valid expiring date')
-      }else{
-        if (localStorage.getItem('savedCards') != undefined) {
-          this.savedCardsArray = JSON.parse(localStorage.getItem('savedCards'));
-          console.log('getItem');
-        }
-        this.savedCardsArray.push(this.card);
-        localStorage.setItem('savedCards', JSON.stringify(this.savedCardsArray));
-        console.log('setItem');
+      if (this.card.cardNumber.length !== 16) {
+        alert('Please fill a valid card number');
+      } else if (this.card.name.length == 0 || this.card.name.length >= 16) {
+        alert('Please fill a valid name');
+      } else if (this.card.year.length == 0 || this.card.year.length == 0) {
+        alert('Please fill a valid expiring date');
+      } else {
+        this.$emit('saveCard', this.card);
         this.$emit('clickToChangeView');
-        console.log(localStorage);
       }
-
     },
   },
 };
@@ -199,6 +190,7 @@ label {
 }
 
 .add-new-card-btn {
+  margin-top: 30px;
   border: none;
   background-color: black;
   color: white;
